@@ -165,3 +165,33 @@ var { x = 3 } = { x: undefined };
 x // 3
 var { x = 3 } = { x: null };
 x // null
+
+/**
+ * 错误的写法
+ * 因为JavaScript引擎会将{x}理解成一个代码块，从而发生语法错误。只有不将大括号写在行首，避免JavaScript将其解释为代码块，才能解决这个问题。
+ */
+let x;
+{ x } = { x: 1 }; // 报错 Uncaught SyntaxError: Unexpected token '='
+
+/**
+ * 正确的写法
+ * 将整个解构赋值语句，放在一个圆括号里面，就可以正确执行。
+ */
+let x;
+({ x } = { x: 1 }); // {x: 1}
+
+/**
+ * 解构赋值允许等号左边的模式之中，不放置任何变量名。
+ */
+({} = [true, false]); // [true,false]
+({} = 'abc'); // "abc"
+({} = []); // []
+
+/**
+ * 由于数组本质是特殊对象，因此可以对数组进行对象属性的解构。
+ */
+// 数组arr的0键对应的值是1，[arr.length - 1]就是2键，对应的值是3.
+let arr = [1, 2, 3];
+let { 0: first, [arr.length - 1]: last } = arr;
+first // 1
+last // 3
