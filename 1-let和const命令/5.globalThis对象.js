@@ -16,6 +16,10 @@
 // 任何环境下，globalThis都是存在的，都可以从它拿到顶层对象，指向全局环境下的this
 (typeof window !== 'undefined' ? window : (typeof process === 'object' && typeof require === 'function' && typeof global === 'object') ? global : this);
 
+/**
+ * throw new Error(); 创建错误，创造一个错误类型抛出
+ * throw error 抛出错误
+ */
 var getGlobal = function () {
     if (typeof self !== 'undefined') {
         return self;
