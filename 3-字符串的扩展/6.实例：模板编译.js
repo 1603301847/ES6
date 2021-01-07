@@ -29,6 +29,7 @@ echo('</ul>'); // Uncaught ReferenceError: echo is not defined
 
 /**
  * 转换使用正则表达式
+ * replace()方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
  */
 let evalExpr = /<%=(.+?)%>/g;
 let expr = /<%([\s\S]+?)%>/g;

@@ -4,3 +4,4 @@
 alert`hello` 
 // 等同于
 alert(['hello'])
+
