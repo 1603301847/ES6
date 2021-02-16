@@ -65,7 +65,7 @@
 
         // 去重合并
         function combine() {
-            let arr = [].concat.apply([], arguments);
+            let arr = [].concat.apply([], arguments); // 没有去重的新数组
             return Array.from(new Set(arr));
         }
 
