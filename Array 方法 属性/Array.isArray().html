@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Array.isArray() 用于确定传递的值是否是一个Array
+         * Array.isArray(obj)
+         * obj 需要检测的值
+         * 返回值：如果值是 Array， 则为true；否则为假
+         */
+        console.log(Array.isArray([1, 2, 3])); // true
+        console.log(Array.isArray({
+            foo: 123
+        })); // false
+        console.log(Array.isArray("foobar")); // false
+        console.log(Array.isArray(undefined)); // false
+
+        // 下面的函数调用都返回 true
+        console.log(Array.isArray([]));
+        console.log(Array.isArray([1]));
+        console.log(Array.isArray(new Array()));
+        console.log(Array.isArray(new Array('a', 'b', 'c', 'd')));
+        console.log(Array.isArray(Array.prototype));
+
+        // 下面的函数调用都返回 false
+        console.log(Array.isArray());
+        console.log(Array.isArray({}));
+        console.log(Array.isArray(null));
+        console.log(Array.isArray(undefined));
+        console.log(Array.isArray(17));
+        console.log(Array.isArray('Array'));
+        console.log(Array.isArray(true));
+        console.log(Array.isArray(false));
+        console.log(Array.isArray(new Uint8Array(32)));
+        console.log(Array.isArray({
+            _proto_: Array.prototype
+        }));
+    </script>
+</body>
+
+</html>

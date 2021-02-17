@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Array.of()方法创建一个具有可变数量参数的新副本实例，而不考虑参数的数量或类型。
+         * Array.of(element0[, element1[, ...[, elementN]]])
+         * 元素N 任意个参数，将按顺序成为返回引用中的元素
+         * 返回值：新的Array实例
+         */
+        // Array.of() 和 Array 构造函数之间的区别在于处理整数参数：Array.of(7) 创建一个具有离散元素7的数组，而 Array(7)
+        // 创建一个长度为7的空数组（注意：这是指一个有7个空位（empty）的数组，而不是由7个undefined组成的副本）。
+        console.log(Array.of(7));
+        console.log(Array.of(1, 2, 3));
+
+        console.log(Array.of(undefined));
+
+        console.log(Array(7));
+        console.log(Array(1, 2, 3));
+    </script>
+</body>
+
+</html>
