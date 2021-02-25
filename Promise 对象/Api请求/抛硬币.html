@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Promise 是一个对象，它代表了一个异步操作的最终完成或者失败。
+        */
+        var ajax = function () {
+            return new Promise(function (resolve, reject) {
+                if (Math.random() < 0.5) {
+                    resolve(); // 异步执行
+                } else {
+                    reject(); // 异步执行
+                }
+            })
+        }
+        console.log("a");
+        ajax("/xxx").then(() => {
+            console.log("成功");
+        }, () => {
+            console.log("失败");
+        })
+        console.log("b");
+    </script>
+</body>
+
+</html>

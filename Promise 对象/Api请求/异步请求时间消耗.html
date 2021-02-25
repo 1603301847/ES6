@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Promise 是一个对象，它代表了一个异步操作的最终完成或者失败。
+         */
+        var ajax = function () {
+            return new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                    var res = {
+                        "data": "我是数据"
+                    }
+                    resolve(res);
+                }, 500)
+            })
+        }
+        console.log("a");
+
+        // ajax("/xxx").then((res) => {
+        //     console.log(res);
+        // }, () => {
+        //     console.log("失败");
+        // })
+
+        // 等价于
+
+        // .then()返回成功执行
+        // .catch()返回失败执行
+        // .finally()无论返回成功失败都需要执行
+
+        // var loading = true;
+        ajax("/xxx").then((res) => {
+            console.log(res);
+        }).catch(() => {
+            console.log("失败");
+        }).finally(() => {
+            console.log("完毕");
+        //  loading = false;
+        })
+
+        console.log("b");
+    </script>
+</body>
+
+</html>
