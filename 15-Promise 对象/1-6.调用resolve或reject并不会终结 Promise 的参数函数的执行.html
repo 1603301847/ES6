@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 调用resolve或reject并不会终结 Promise 的参数函数的执行。
+         * 
+         * 调用resolve(1)以后，后面的console.log(2)还是会执行，并且会首先打印出来。
+         * 这是因为立即 resolved 的 Promise 是在本轮事件循环的末尾执行，总是晚于本轮循环的同步任务。
+        */
+        var p1 = new Promise((resolve, reject) => {
+            resolve(1);
+            console.log(2);
+        }).then(r => {
+            console.log(r);
+        });
+        // 21行打印结果：   2
+        // 23行打印结果：   1
+
+        /**
+         * 一般来说，调用resolve或reject以后，Promise的使命就完成了，
+         * 后继操作应该放到then方法里面，而不应该直接写在resolve或reject的后面。
+         * 所以，最好在它们前面加上return语句，这样就不会有意外。
+         * 
+         * new Promise((resolve, reject) => {
+                return resolve(1);
+                // 后面的语句不会执行
+                console.log(2);
+            })
+        */
+    </script>
+</body>
+
+</html>
