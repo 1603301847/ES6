@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 使用（）方法创建（不可取消）setImmediate样式的函数。
+         * Function.prototype.bind() Reflect.applyReflect.apply()
+         */
+
+        const nextTick = (() => {
+            const noop = () => {};
+            const nextTickPromise = () => Promise.resolve().then(noop);
+
+            const rfab = Reflect.apply.bind;
+            const nextTick = (fn, ...args) => (
+                fn !== undefined ? Promise.resolve(args).then(rfab(null, fn, null)) : nextTickPromise(),
+                undefined
+            );
+            nextTick.ntp = nextTickPromise;
+            return nextTick;
+        })();
+    </script>
+</body>
+
+</html>

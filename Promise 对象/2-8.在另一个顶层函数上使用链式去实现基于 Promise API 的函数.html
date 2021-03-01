@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fetch_current_data() {
+            // fetch() API 返回了一个 Promise.
+            // 这个函数提供了类似的API，
+            // 这个函数除了实现 Promise，它还能够完成更多的工作
+            return fetch('current-data.json').then(response => {
+                if (response.headers.get('content-type') != 'application/json') {
+                    throw new TypeError();
+                }
+                var j = response.json();
+                return j; // 提供给用户的实现值
+            })
+        }
+    </script>
+</body>
+
+</html>
