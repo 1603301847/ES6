@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /***
+         * 实际上，捕获 rejected promise 的需求经常大于使用 then 的两种情况语法
+        */
+        Promise.resolve().then(() => {
+            throw new Error('Oh no!');
+        }).catch(error => {
+            console.error('onRejected function called: ' + error.message);
+        }).then(() => {
+            console.log("I am always called even if the prior then's promise rejects");
+        });
+
+        /**
+         * 打印结果：
+         * 16行 onRejected function called: Oh no!
+         * 18行 I am always called even if the prior then's promise rejects
+        */
+    </script>
+</body>
+
+</html>

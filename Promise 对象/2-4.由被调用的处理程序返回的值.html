@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 当一个值只是从一个 then 内部返回时，它将等价地返回 Promise.resolve(<由被调用的处理程序返回的值>)。
+        */
+        var p2 = new Promise(function(resolve, reject) {
+            resolve(1);
+        });
+
+        p2.then(function(value) {
+            console.log(value);
+            return value + 1;
+        }).then(function(value) {
+            console.log(value + ' - A synchronous value works');
+        });
+
+        p2.then(function(value) {
+            console.log(value);
+        });
+
+        /**
+         * 打印结果：
+         * 16行     1
+         * 23行     1
+         * 19行     2 - A synchronous value works
+        */
+    </script>
+</body>
+</html>
