@@ -29,25 +29,62 @@
  * 如果该参数不是函数，则会在内部被替换为一个 "Thrower" 函数 (it throws an error it received as argument)。
  */
 
- /**
-  * 返回值
-  * 当一个 Promise 完成（fulfilled）或者失败（rejected）时，返回函数将被异步调用（由当前的线程循环来调度完成）。
-  * 具体的返回值依据以下规则返回。如果 then 中的回调函数：
-  * 
-  * 返回了一个值，那么 then 返回的 Promise 将会成为接受状态，并且将返回的值作为接受状态的回调函数的参数值。
-  * 
-  * 没有返回任何值，那么 then 返回的 Promise 将会成为接受状态，并且该接受状态的回调函数的参数值为 undefined。
-  * 
-  * 抛出一个错误，那么 then 返回的 Promise 将会成为拒绝状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。
-  * 
-  * 返回一个已经是接受状态的 Promise，那么 then 返回的 Promise 也会成为接受状态，
-  * 并且将那个 Promise 的接受状态的回调函数的参数值作为该被返回的Promise的接受状态回调函数的参数值。
-  * 
-  * 返回一个已经是拒绝状态的 Promise，那么 then 返回的 Promise 也会成为拒绝状态，
-  * 并且将那个 Promise 的拒绝状态的回调函数的参数值作为该被返回的Promise的拒绝状态回调函数的参数值。
-  * 
-  * 返回一个未定状态（pending）的 Promise，那么 then 返回 Promise 的状态也是未定的，
-  * 并且它的终态与那个 Promise 的终态相同；同时，它变为终态时调用的回调函数参数与那个 Promise 变为终态时的回调函数的参数是相同的。
-  * 
-  * 由于 then 和 Promise.prototype.catch() 方法都会返回 promise，它们可以被链式调用——这同时也是一种被称为复合（ composition） 的操作。
-  */
+/**
+ * 返回值
+ * 当一个 Promise 完成（fulfilled）或者失败（rejected）时，返回函数将被异步调用（由当前的线程循环来调度完成）。
+ * 具体的返回值依据以下规则返回。如果 then 中的回调函数：
+ * 
+ * 返回了一个值，那么 then 返回的 Promise 将会成为接受状态，并且将返回的值作为接受状态的回调函数的参数值。
+ * 
+ * 没有返回任何值，那么 then 返回的 Promise 将会成为接受状态，并且该接受状态的回调函数的参数值为 undefined。
+ * 
+ * 抛出一个错误，那么 then 返回的 Promise 将会成为拒绝状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。
+ * 
+ * 返回一个已经是接受状态的 Promise，那么 then 返回的 Promise 也会成为接受状态，
+ * 并且将那个 Promise 的接受状态的回调函数的参数值作为该被返回的Promise的接受状态回调函数的参数值。
+ * 
+ * 返回一个已经是拒绝状态的 Promise，那么 then 返回的 Promise 也会成为拒绝状态，
+ * 并且将那个 Promise 的拒绝状态的回调函数的参数值作为该被返回的Promise的拒绝状态回调函数的参数值。
+ * 
+ * 返回一个未定状态（pending）的 Promise，那么 then 返回 Promise 的状态也是未定的，
+ * 并且它的终态与那个 Promise 的终态相同；同时，它变为终态时调用的回调函数参数与那个 Promise 变为终态时的回调函数的参数是相同的。
+ * 
+ * 由于 then 和 Promise.prototype.catch() 方法都会返回 promise，它们可以被链式调用——这同时也是一种被称为复合（ composition） 的操作。
+ */
+
+/**
+ * then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）。
+ * 因此可以采用链式写法，即then方法后面再调用另一个then方法。
+ * 使用then方法，依次指定了两个回调函数。第一个回调函数完成以后，会将返回结果作为参数，传入第二个回调函数。
+ */
+
+getJSON("/posts.json").then(function (json) {
+    return json.post;
+}).then(function (post) {
+    // ...
+});
+
+/***
+ * 采用链式的then，可以指定一组按照次序调用的回调函数。
+ * 这时，前一个回调函数，有可能返回的还是一个Promise对象（即有异步操作），这时后一个回调函数，就会等待该Promise对象的状态发生变化，才会被调用。
+ * 第一个then方法指定的回调函数，返回的是另一个Promise对象。
+ * 这时，第二个then方法指定的回调函数，就会等待这个新的Promise对象状态发生变化。
+ * 如果变为resolved，就调用第一个回调函数，如果状态变为rejected，就调用第二个回调函数。
+ */
+getJSON("/post/1.json").then(function (post) {
+    return getJSON(post.commentURL);
+}).then(function (comments) {
+    console.log("resolved: ", comments);
+}, function (err) {
+    console.log("rejected: ", err);
+});
+
+/***
+ * 如果采用箭头函数，上面的代码可以写得更简洁。
+ */
+getJSON("/post/1.json").then(
+    post => getJSON(post.commentURL)
+).then(
+    comments => console.log("resolved: ", comments),
+    err => console.log("rejected: ", err)
+);
