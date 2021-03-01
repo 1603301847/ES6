@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var p1 = new Promise(function (resolve, reject) {
+            resolve('Success');
+        });
+
+        p1.then(function (value) {
+            console.log(value);
+            throw 'oh, no!';
+        }).catch(function (err) {
+            console.log(err);
+        }).then(function () {
+            console.log('after a catch the chain is restored');
+        }, function () {
+            console.log('Not fired due to the catch');
+        });
+
+        /**
+         * 打印结果
+         * 18行 Success
+         * 21行 oh, no!
+         * 23行 after a catch the chain is restored
+         */
+    </script>
+</body>
+
+</html>
