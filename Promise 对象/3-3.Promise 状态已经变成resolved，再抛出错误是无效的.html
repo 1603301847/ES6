@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Promise 在resolve语句后面，再抛出错误，不会被捕获，等于没有抛出。
+         * 因为 Promise 的状态一旦改变，就永久保持该状态，不会再变了。
+        */
+        const promise = new Promise(function (resolve, reject) {
+            resolve('ok');
+            throw new Error('test');
+        });
+        promise.then(function (value) {
+            console.log(value) // ok
+        }).catch(function (error) {
+            console.log(error)
+        });
+    </script>
+</body>
+
+</html>
