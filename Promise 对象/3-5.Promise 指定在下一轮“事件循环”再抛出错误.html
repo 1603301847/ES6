@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Promise 指定在下一轮“事件循环”再抛出错误。
+         * 到了那个时候，Promise 的运行已经结束了，所以这个错误是在 Promise 函数体外抛出的，会冒泡到最外层，成了未捕获的错误。
+         */
+        const promise = new Promise(function (resolve, reject) {
+            resolve('ok');
+            setTimeout(function () {
+                throw new Error('test')
+            }, 0)
+        });
+        promise.then(function (value) {
+            connsole.log(value)
+        });
+        /**
+         * 打印结果
+         * 24行 Uncaught (in promise) ReferenceError: connsole is not defined
+         * 20行 Uncaught Error: test
+        */
+    </script>
+</body>
+
+</html>

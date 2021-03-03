@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 代码因为没有报错，跳过了catch()方法，直接执行后面的then()方法。
+        // 此时，要是then()方法里面报错，就与前面的catch()无关了。
+        Promise.resolve().catch(function (error) {
+            console.log('oh no', error);
+        }).then(function () {
+            console.log('carry on');
+        });
+        /**
+            打印结果 16行 carry on
+        */
+    </script>
+</body>
+
+</html>

@@ -8,6 +8,15 @@
 </head>
 <body>
     <script>
+        /**
+         * 跟传统的try/catch代码块不同的是，如果没有使用catch()方法指定错误处理的回调函数，
+         * Promise 对象抛出的错误不会传递到外层代码，即不会有任何反应。
+         * 
+         * someAsyncThing()函数产生的 Promise 对象，内部有语法错误。
+         * 浏览器运行到这一行，会打印出错误提示ReferenceError: x is not defined，
+         * 但是不会退出进程、终止脚本执行，2秒之后还是会输出123。
+         * 这就是说，Promise 内部的错误不会影响到 Promise 外部的代码，通俗的说法就是“Promise 会吃掉错误”。
+        */
         const someAsyncThing = function() {
             return new Promise(function(resolve, reject) {
                 resolve(x + 2);
@@ -19,6 +28,11 @@
         });
 
         setTimeout(() => { console.log(123) }, 2000);
+        /**
+         * 打印结果
+         * 13行 Uncaught (in promise) ReferenceError: x is not defined
+         * 21行 123
+        */
     </script>
 </body>
 </html>
