@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 由于两个空对象不相等，所以它们被视为两个值。
+        */
+        let set = new Set();
+        set.add({});
+        console.log(set.size); // 1
+
+        set.add({});
+        console.log(set.size); // 2
+    </script>
+</body>
+
+</html>

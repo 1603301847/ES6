@@ -10,13 +10,40 @@
 
 <body>
     <script>
+        /**
+         * promises是包含 6 个 Promise 实例的数组，只有这 6 个实例的状态都变成fulfilled，
+         * 或者其中有一个变为rejected，才会调用Promise.all方法后面的回调函数。
+        */
+        const getJSON = function (url) {
+            const promise = new Promise(function (resolve, reject) {
+                const handler = function () {
+                    if (this.readyState !== 4) {
+                        return;
+                    }
+                    if (this.status === 200) {
+                        resolve(this.response);
+                    } else {
+                        reject(new Error(this.statusText));
+                    }
+                };
+                const client = new XMLHttpRequest();
+                client.open("GET", url);
+                client.onreadystatechange = handler;
+                client.responseType = "json";
+                client.setRequestHeader("Accept", "application/json");
+                client.send();
+
+            });
+
+            return promise;
+        };
         const promises = [2, 3, 5, 7, 11, 13].map(function (id) {
-            return getJSON('/post/' + id + ".json");
+            return getJSON('./post/' + id + ".json");
         });
         Promise.all(promises).then(function (posts) {
             console.log(posts);
         }).catch(function (reason) {
-            console.log(reason);
+            console.log(reason); // Error at XMLHttpRequest.handler (5-1.生成一个Promise对象的数组.html:22)
         });
     </script>
 </body>

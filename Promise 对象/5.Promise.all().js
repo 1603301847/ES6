@@ -10,3 +10,28 @@ const p = Promise.all([p1, p2, p3]);
  * （1）只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled，此时p1、p2、p3的返回值组成一个数组，传递给p的回调函数。
  * （2）只要p1、p2、p3之中有一个被rejected，p的状态就变成rejected，此时第一个被reject的实例的返回值，会传递给p的回调函数。
  */
+
+/**
+ * booksPromise和userPromise是两个异步操作，只有等到它们的结果都返回了，才会触发pickTopRecommendations这个回调函数。
+ */
+const databasePromise = connectDatabase();
+
+const booksPromise = databasePromise
+    .then(findAllBooks);
+
+const userPromise = databasePromise
+    .then(getCurrentUser);
+
+Promise.all([
+    booksPromise,
+    userPromise
+])
+    .then(([books, user]) => pickTopRecommendations(books, user));
+
+/**
+ * Promise.all() 方法接收一个promise的iterable类型（注：Array，Map，Set都属于ES6的iterable类型）的输入，
+ * 并且只返回一个Promise实例， 那个输入的所有promise的resolve回调的结果是一个数组。
+ * 这个Promise的resolve回调执行是在所有输入的promise的resolve回调都结束，或者输入的iterable里没有promise了的时候。
+ * 它的reject回调执行是，只要任何一个输入的promise的reject回调执行或者输入不合法的promise就会立即抛出错误，
+ * 并且reject的是第一个抛出的错误信息。
+ */

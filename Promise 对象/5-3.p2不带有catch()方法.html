@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 如果p2没有自己的catch方法，就会调用Promise.all()的catch方法。
+        */
+        const p1 = new Promise((resolve, reject) => {
+            resolve('hello');
+        }).then(result => result);
+
+        const p2 = new Promise((resolve, reject) => {
+            throw new Error('报错了');
+        }).then(result => result);
+
+        Promise.all([p1, p2]).then(result => console.log(result)).catch(e => console.log(e)); // 打印: Error:报错了
+    </script>
+</body>
+
+</html>
