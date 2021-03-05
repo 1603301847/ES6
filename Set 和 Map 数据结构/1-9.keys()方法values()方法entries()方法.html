@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let set = new Set(['red', 'green', 'blue']);
+        for (let item of set.keys()) {
+            console.log(item);
+        }
+        // red
+        // green
+        // blue
+
+        for (let item of set.values()) {
+            console.log(item);
+        }
+        // red
+        // green
+        // blue
+
+        // entries方法返回的遍历器，同时包括键名和键值，所以每次输出一个数组，它的两个成员完全相等。
+        for (let item of set.entries()) {
+            console.log(item);
+        }
+        // ["red", "red"]
+        // ["green", "green"]
+        // ["blue", "blue"]
+    </script>
+</body>
+
+</html>

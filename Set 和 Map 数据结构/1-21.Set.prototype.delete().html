@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * delete() 方法可以从一个 Set 对象中删除指定的元素。
+         */
+        var mySet = new Set();
+        mySet.add("foo");
+
+        console.log(mySet.delete("bar")); // false
+        console.log(mySet.delete("foo")); // true
+        console.log(mySet.has("foo")); // false
+    </script>
+</body>
+
+</html>

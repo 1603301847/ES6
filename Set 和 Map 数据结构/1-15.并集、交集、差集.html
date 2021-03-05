@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = new Set([1, 2, 3]);
+        let b = new Set([4, 3, 2]);
+
+        // 并集
+        let union = new Set([...a, ...b]);
+        console.log(union); // Set(4) {1, 2, 3, 4}
+
+        // 交集
+        let intersect = new Set([...a].filter(x => b.has(x)));
+        console.log(intersect); // Set(2) {2, 3}
+
+        // （a 相对于 b 的）差集
+        let difference = new Set([...a].filter(x => !b.has(x)));
+        console.log(difference); // Set(1) {1}
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * has() 方法返回一个布尔值来指示对应的值value是否存在Set对象中。
+         */
+        var mySet = new Set();
+        mySet.add('foo');
+
+        console.log(mySet.has('foo')); // true
+        console.log(mySet.has('bar')); // false
+
+        var set1 = new Set();
+        var obj1 = {
+            'key1': 1
+        };
+        set1.add(obj1);
+
+        console.log(set1.has(obj1)); // true
+        console.log(set1.has({
+            'key1': 1
+        })); // false
+        console.log(set1.add({
+            'key1': 1
+        })); // {{key1: 1},{key1: 1}}
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 直接在遍历操作中改变原来的 Set 结构
+         * 如果想在遍历操作中，同步改变原来的 Set 结构，目前没有直接的方法，但有两种变通方法。
+         * 一种是利用原 Set 结构映射出一个新的结构，然后赋值给原来的 Set 结构；另一种是利用Array.from方法。
+        */
+        let set1 = new Set([1, 2, 3]);
+        set1 = new Set([...set1].map(val => val * 2));
+        console.log(set1); // Set(3) {2, 4, 6}
+
+        let set2 = new Set([1, 2, 3]);
+        set2 = new Set(Array.from(set2, val => val * 2));
+        console.log(set2); // Set(3) {2, 4, 6}
+    </script>
+</body>
+
+</html>

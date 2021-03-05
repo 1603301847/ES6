@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * values() 方法按照元素插入顺序返回一个具有 Set 对象每个元素值的全新 Iterator 对象。
+         * keys() 方法是这个方法的别名（与 Map 对象相似）；他们的行为一致，都是返回Set 对象中的元素值。
+         */
+        const set1 = new Set();
+        set1.add(42);
+        set1.add('forty two');
+
+        const iterator1 = set1.values();
+
+        console.log(iterator1.next().value); // 42
+        console.log(iterator1.next().value); // forty two
+
+        var mySet = new Set();
+        mySet.add('foo');
+        mySet.add('bar');
+        mySet.add('baz');
+
+        var setIter = mySet.values();
+        console.log(setIter.next().value); // foo
+        console.log(setIter.next().value); // bar 
+        console.log(setIter.next().value); // baz
+    </script>
+</body>
+
+</html>
