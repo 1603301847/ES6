@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Symbol.match 指定了匹配的是正则表达式而不是字符串。
+         * String.prototype.match() 方法会调用此函数。
+         * 此函数还用于标识对象是否具有正则表达式的行为。
+        */
+       const regexp1 = /foo/;
+       regexp1[Symbol.match] = false;
+       console.log('/foo/'.startsWith(regexp1)); // true
+       console.log('/baz/'.endsWith(regexp1)); // false
+
+       // 禁止表达式检查
+       console.log("/bar/".startsWith(/bar/)); // Throws TypeError 因为/bar/是一个正则表达式 且 Symbol.match没有修改。
+
+       var re = /foo/;
+       re[Symbol.match] = false;
+       console.log("/foo/".startsWith(re)); // true
+       console.log("/baz/".startsWith(re)); // false
+    </script>
+</body>
+</html>

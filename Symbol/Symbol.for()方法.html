@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Symbol.for(key)方法会根据给定的键key，来从运行时的symbol注册表中找到对应的symbol，
+         * 如果找到了，则返回它，否则，新建一个与该键关联的symbol，并放入全局symbol注册表中。
+         * 语法 Symbol.for(key)
+         * 参数 key 一个字符串，作为symbol注册表中与某symbol关联的键(同时也会作为该symbol的描述)
+         * 返回值 返回由给定的key找到的symbol，否则就是返回新创建的symbol。 
+         */
+        console.log(Symbol.for("foo"));
+        console.log(Symbol.for("foo"));
+
+        console.log(Symbol.for("bar") === Symbol.for("bar"));
+        console.log(Symbol("bar") === Symbol("bar")); // false
+
+        var sym = Symbol.for("mario");
+        console.log(sym.toString()); // Symbol(mario)
+
+        /**
+         * 为了防止冲突，最好放入symbol注册表中的symbol带上键前缀
+        */
+       Symbol.for("mdn.foo");
+       Symbol.for("mdn.bar");
+    </script>
+</body>
+
+</html>

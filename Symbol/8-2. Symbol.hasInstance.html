@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * MyClass是一个类，new MyClass会返回一个实例。该实例的Symbol。
+         * hasInstance方法，会在instanceof运算时自动调用，判断左侧的运算子是否为Array的实例。
+         */
+        class MyClass {
+            [Symbol.hasInstance](foo) {
+                return foo instanceof Array;
+            }
+        }
+        console.log([1, 2, 3] instanceof new MyClass()); // true
+    </script>
+</body>
+
+</html>

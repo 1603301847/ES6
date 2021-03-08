@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Symbol.toPrimitive 是一个内置的 Symbol 值，它是作为对象的函数值属性存在的，当一个对象转换为对应的原始值时，会调用此函数。
+         */
+        const object1 = {
+            [Symbol.toPrimitive](hint) {
+                if (hint === 'number') {
+                    return 42;
+                }
+                return null;
+            }
+        }
+        console.log(+object1); // 42
+    </script>
+</body>
+
+</html>

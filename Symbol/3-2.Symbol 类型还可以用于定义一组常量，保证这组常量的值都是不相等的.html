@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Symbol 类型还可以用于定义一组常量，保证这组常量的值都是不相等的。
+        */
+        const log = {};
+        log.levels = {
+            DEBUG: Symbol('debug'),
+            INFO: Symbol('info'),
+            WARN: Symbol('warn')
+        };
+        console.log(log.levels.DEBUG, 'debug message'); // Symbol(debug) "debug message"
+        console.log(log.levels.INFO, 'info message'); // Symbol(info) "info message"
+    </script>
+</body>
+
+</html>

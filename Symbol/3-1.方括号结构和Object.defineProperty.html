@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 通过方括号结构和Object.defineProperty，将对象的属性名指定为一个 Symbol 值。
+         */
+        let mySymbol = Symbol();
+
+        // 第一种写法
+        {
+            let a = {};
+            a[mySymbol] = 'Hello!';
+            console.log(a[mySymbol]); // Hello!
+        }
+
+        // 第二种写法
+        {
+            let a = {
+                [mySymbol]: 'Hello!'
+            }
+            console.log(a[mySymbol]); // Hello!
+
+        }
+
+        // 第三种写法
+        {
+            let a = {};
+            Object.defineProperty(a, mySymbol, {
+                value: 'Hello!'
+            });
+            console.log(a[mySymbol]); // Hello!
+        }
+    </script>
+</body>
+
+</html>

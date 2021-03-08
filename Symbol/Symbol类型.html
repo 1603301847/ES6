@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 基本类型： Number、 String、 Boolean、 Null、 Undefined、 Symbol
+         * 引用类型： Object(Array)
+         * Symbol: 唯一值
+         */
+        // 1.创建 利用Symbol()来创建
+        let s = Symbol();
+        console.log(s); // Symbol()
+
+        // 2.参数 用于描述Symbol
+        let s1 = Symbol('我是s1');
+        let s2 = Symbol('我是s2');
+        console.log(s1); // Symbol(我是s1)
+        console.log(s2); // Symbol(我是s2)
+        console.log(s1 === s2); // false
+
+        // 3.作用（应用场景）
+        let obj = {
+            name: '有鱼',
+            age: 2
+        };
+        console.log(obj.name);
+        obj.age = 12;
+
+        // 使用symbol作为对象的属性名
+
+        let obj1 = {
+            name: '年年',
+            age: 4,
+            [s1]: "哈哈哈",
+            [s2]: "哈哈哈"
+        }
+        console.log(obj1); // {name: "年年", age: 4, Symbol(我是s1): "哈哈哈", Symbol(我是s2): "哈哈哈"}
+ 
+        // 取值
+        console.log(obj1.s1); // undefined
+        console.log(obj1[s1]); // 哈哈哈
+        obj1[s2] = "嘿嘿嘿";
+        console.log(obj1); // {name: "年年", age: 4, Symbol(我是s1): "哈哈哈", Symbol(我是s2): "嘿嘿嘿"}
+
+        // 作用1
+        for(index in obj1){
+            // 把一些不需要对外操作和访问属性使用symbol来定义，因为Symbol类型的key是不能通过Object.keys()或者for...in 来枚举的
+            console.log(obj1[index]); // 年年 4
+        }
+
+        // 作用2
+        // const getA = 'a';
+        // const getB = 'b';
+        // const getC = 'c';
+
+        const getA = Symbol();
+        const getB = Symbol();
+        const getC = Symbol();
+        console.log(getA == getB); // false
+    </script>
+</body>
+
+</html>

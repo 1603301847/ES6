@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 内置的Symbol.isConcatSpreadable符号用于配置某对象作为Array.prototype.concat()方法的参数时是否展开其数组元素。
+        */
+       const alpha = ['a', 'b', 'c'];
+       const numeric = [1, 2, 3];
+       let alphaNumeric = alpha.concat(numeric);
+
+       console.log(alphaNumeric); //  ["a", "b", "c", 1, 2, 3]
+
+       numeric[Symbol.isConcatSpreadable] = false;
+       alphaNumeric = alpha.concat(numeric);
+       console.log(alphaNumeric); // ["a", "b", "c", Array(3)]
+
+       // Array-like 对象
+       var x = [1, 2, 3];
+       var fakeArray = {
+           [Symbol.isConcatSpreadable]: true,
+           length: 2,
+           0: "hello",
+           1: "world"
+       }
+       console.log(x.concat(fakeArray)); // [1, 2, 3, "hello", "world"]
+    </script>
+</body>
+</html>

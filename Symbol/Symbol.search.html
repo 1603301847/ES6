@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Symbol.search 指定了一个搜索方法，这个方法接受用户输入的正则表达式，返回该正则表达式在字符串中匹配到的下标，
+         * 这个方法由以下的方法来调用 String.prototype.search()。
+         */
+        // 自定义字符串搜索
+        class caseInsensitiveSearch {
+            constructor(value) {
+                    this.value = value.toLowerCase();
+                }
+                [Symbol.search](string) {
+                    return string.toLowerCase().indexOf(this.value);
+                }
+        }
+        console.log('foobar'.search(new caseInsensitiveSearch('BaR'))); // 3
+    </script>
+</body>
+
+</html>

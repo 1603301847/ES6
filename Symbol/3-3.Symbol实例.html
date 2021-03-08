@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const COLOR_RED = Symbol();
+        const COLOR_GREEN = Symbol();
+
+        function getComplement(color) {
+            switch (color) {
+                case COLOR_RED:
+                    return COLOR_GREEN;
+                case COLOR_GREEN:
+                    return COLOR_RED;
+                default:
+                    throw new Error('Undefined color');
+            }
+        }
+        console.log(getComplement(COLOR_RED)); // Symbol()
+    </script>
+</body>
+
+</html>

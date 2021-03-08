@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Array.prototype.keys() 方法出现。意味着内部 with 环境“关键字” 存在该方法，但变量中不会存在。 
+         * 也就是说，当 unscopables symbol被展示时，内置的unscopables 设置是由 Array.prototype[@@unscopables] 展示并实现的，
+         *  一些 Array 的方法 将作为 scoped 放入 with 语句中。
+         */
+
+        var keys = [];
+        with(Array.prototype) {
+            keys.push("something");
+        }
+        console.log(Object.keys(Array.prototype[Symbol.unscopables]));
+        // ["copyWithin", "entries", "fill", "find", "findIndex", "flat", "flatMap", "includes", "keys", "values"]
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Symbol.keyFor(sym)方法用来获取全局symbol注册表中与某个symbol关联的键
+         * 语法 Symbol.keyFor(sym);
+         * 参数 sym 必选参数，需要查找键值的某个Symbol
+         * 返回值 如果全局注册表中查找到该symbol，则返回symbol的key值，返回值为字符串类型。否则返回undefined
+         */
+        var globalSym = Symbol.for("foo");
+        console.log(Symbol.keyFor(globalSym)); // foo
+
+        var localSym = Symbol();
+        console.log(Symbol.keyFor(localSym)); // undefined
+
+        // 以下Symbol不是保存在全局Symbol注册表中
+        console.log(Symbol.keyFor(Symbol.iterator)); // undefined
+    </script>
+</body>
+
+</html>

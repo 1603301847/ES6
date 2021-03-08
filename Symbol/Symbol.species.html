@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 知名的 Symbol.species 是个函数值属性，其被构造函数用以创建派生对象。
+         */
+        class Array1 extends Array {
+            static get[Symbol.species]() {
+                return Array;
+            }
+        }
+
+        const a = new Array(1, 2, 3);
+        const mapped = a.map(x => x * x);
+        console.log(mapped instanceof Array1); // false
+        console.log(mapped instanceof Array); // true
+    </script>
+</body>
+
+</html>

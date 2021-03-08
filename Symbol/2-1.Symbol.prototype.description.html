@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * description 是一个只读属性，它会返回 Symbol 对象的可选描述的字符串。
+         * Symbol 对象可以通过一个可选的描述创建，可用于调试，但不能用于访问 symbol 本身。
+         * Symbol.prototype.description 属性可以用于读取该描述。
+         * 与Symbol.prototype.toString() 不同的是它不会包含 "Symbol()" 的字符串。
+         */
+        console.log(Symbol('desc').description); // desc
+        console.log(Symbol.iterator.description); // Symbol.iterator
+        console.log(Symbol.for('foo').description); // foo
+        console.log(`${Symbol('foo').description}bar`); // foobar
+
+
+        console.log(Symbol('desc').toString()); // Symbol(desc)
+        console.log(Symbol('desc').description); // desc
+        console.log(Symbol('').description); //  
+        console.log(Symbol().description); // undefined
+
+        console.log(Symbol.iterator.toString()); // Symbol(Symbol.iterator)
+        console.log(Symbol.iterator.description); // Symbol.iterator
+
+        console.log(Symbol.for('foo').toString()); // Symbol(foo)
+        console.log(Symbol.for('foo').description); // foo
+    </script>
+</body>
+
+</html>
