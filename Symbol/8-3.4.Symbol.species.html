@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * T2定义了Symbol.species属性，T1没有。
+         * 结果就导致了创建衍生对象时（then方法），T1调用的是自身的构造方法，而T2调用的是Promise的构造方法。
+        */
+        class T1 extends Promise {}
+        class T2 extends Promise {
+            static get[Symbol.species]() {
+                return Promise;
+            }
+        }
+        console.log(new T1(r => r()).then(v => v) instanceof T1); // true
+        console.log(new T2(r => r()).then(v => v) instanceof T2); // false
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            length: 2,
+            0: 'c',
+            1: 'd'
+        };
+        console.log(['a', 'b'].concat(obj, 'e')); // ["a", "b", {…}, "e"]
+
+        /**
+         * 类似数组的对象正好相反，默认不展开。它的Symbol.isConcatSpreadable属性设为true，才可以展开
+        */
+        obj[Symbol.isConcatSpreadable] = true;
+        console.log(['a', 'b'].concat(obj, 'e')); // ["a", "b", "c", "d", "e"]
+    </script>
+</body>
+
+</html>

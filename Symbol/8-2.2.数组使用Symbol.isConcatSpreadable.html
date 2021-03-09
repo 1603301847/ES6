@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 对象的Symbol.isConcatSpreadable属性等于一个布尔值，表示该对象用于Array.prototype.concat()时，是否可以展开。
+         */
+        let arr1 = ['c', 'd'];
+        console.log(['a', 'b'].concat(arr1, 'e')); // ["a", "b", "c", "d", "e"]
+        console.log(arr1[Symbol.isConcatSpreadable]); // undefined
+
+        /**
+         * 数组的对象正好相反，默认不展开。它的Symbol.isConcatSpreadable属性设为true，才可以展开
+         */
+        let arr2 = ['c', 'd'];
+        arr2[Symbol.isConcatSpreadable] = false;
+        console.log(['a', 'b'].concat(arr2, 'e')); // ["a", "b", Array(2), "e"]
+    </script>
+</body>
+
+</html>

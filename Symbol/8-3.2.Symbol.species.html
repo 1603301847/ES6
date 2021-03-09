@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 子类MyArray继承了父类Array，a是MyArray的实例，b和c是a的衍生对象。
+         * b和c都是调用数组方法生成的，所以应该是数组(Array的实例)，但实际上它们也是MyArray的实例。
+        */
+        class MyArray extends Array {
+
+        }
+
+        const a = new MyArray(1, 2, 3);
+        const b = a.map(x => x);
+        const c = a.filter(x => x > 1);
+
+        console.log(b instanceof MyArray); // true
+        console.log(c instanceof MyArray); // true
+    </script>
+</body>
+
+</html>
