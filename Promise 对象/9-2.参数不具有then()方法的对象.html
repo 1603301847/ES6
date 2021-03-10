@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 生成一个新的 Promise 对象的实例p。由于字符串Hello不属于异步操作（判断方法是字符串对象不具有 then 方法），
+         * 返回 Promise实例的状态从一生成就是resolved，所以回调函数会立即执行。
+         * Promise.resolve()方法的参数，会同时传给回调函数。
+        */
+        const p = Promise.resolve('Hello');
+        p.then(function (s) {
+            console.log(s);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fetchAndDecode(url) {
+            return fetch(url).then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                } else {
+                    return response.blob();
+                }
+            })
+        }
+
+        let coffee =
+            fetchAndDecode(
+                'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-01-29%2F5c5008c0db794.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1617958660&t=56c76dc44acc26760e303d04a206f9fa'
+                );
+        let tea =
+            fetchAndDecode(
+                'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=195614212,1719006029&fm=26&gp=0.jpg');
+
+        Promise.any([coffee, tea]).then(value => {
+            let objectURL = URL.createObjectURL(value);
+            let image = document.createElement('img');
+            image.src = objectURL;
+            document.body.appendChild(image);
+        }).catch(e => {
+            console.log(e.message);
+        });
+    </script>
+</body>
+
+</html>

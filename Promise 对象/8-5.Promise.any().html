@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var resolved = Promise.resolve(42);
+        var rejected = Promise.reject(-1);
+        var alsoRejected = Promise.reject(Infinity);
+
+        Promise.any([resolved, rejected, alsoRejected]).then(function (result) {
+            console.log(result); // 42
+        });
+
+        Promise.any([rejected, alsoRejected]).catch(function (results) {
+            console.log(results); // AggregateError: All promises were rejected
+        });
+    </script>
+</body>
+
+</html>

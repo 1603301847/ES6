@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Promise.allSettled()的返回值allSettledPromise，状态只可能变成fulfilled。
+         * 它的监听函数接收到的参数是数组results。
+         * 该数组的每个成员都是一个对象，对应传入Promise.allSettled()的两个Promise实例。
+         * 每个对象都有status属性，该属性的值只可能是字符串fulfilled或字符串rejected。
+         * fulfilled时，对象有value属性，rejected时有reason属性，对应两种状态的返回值。
+        */
+        const resolved = Promise.resolve(42);
+        const rejected = Promise.reject(-1);
+
+        const allSettledPromise = Promise.allSettled([resolved, rejected]);
+
+        allSettledPromise.then(function (results) {
+            console.log(results); // [{status: "fulfilled", value: 42}, {status: "rejected", reason: -1}]
+        });
+    </script>
+</body>
+
+</html>

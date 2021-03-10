@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * Promise.resolve()方法会将这个对象转为 Promise 对象，然后就立即执行thenable对象的then()方法。
+         * thenable对象的then()方法执行后，对象p1的状态就变为resolved，
+         * 从而立即执行最后那个then()方法指定的回调函数，输出42。
+        */
+        let thenable = {
+            then: function(resolve, reject) {
+                resolve(42);
+            }
+        };
+
+        let p1 = Promise.resolve(thenable);
+        p1.then(function(value) {
+            console.log(value); // 42
+        });
+    </script>
+</body>
+</html>
