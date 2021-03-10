@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var p = Promise.all([]);
+        var p2 = Promise.all([1337, "hi"]);
+        console.log(p); // Promise {<fulfilled>: Array(0)}
+        console.log(p2); // Promise {<pending>}
+
+        setTimeout(function () {
+            console.log('the stack is now empty'); // the stack is now empty
+            console.log(p2); // Promise {<fulfilled>: Array(2)}
+        })
+    </script>
+</body>
+
+</html>

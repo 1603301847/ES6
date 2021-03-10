@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var p = Promise.all([1, 2, 3]);
+        var p2 = Promise.all([1, 2, 3, Promise.resolve(444)]);
+        var p3 = Promise.all([1, 2, 3, Promise.reject(555)]);
+
+        setTimeout(function () {
+            console.log(p); // Promise {<fulfilled>: Array(3)} __proto__: Promise [[PromiseState]]: "fulfilled" [[PromiseResult]]: Array(3)
+            console.log(p2); // Promise {<fulfilled>: Array(4)} __proto__: Promise [[PromiseState]]: "fulfilled" [[PromiseResult]]: Array(4)
+            console.log(p3); // Promise {<rejected>: 555} __proto__: Promise [[PromiseState]]: "rejected" [[PromiseResult]]: 555
+        });
+    </script>
+</body>
+
+</html>

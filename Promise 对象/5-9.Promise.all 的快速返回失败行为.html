@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * Promise.all 在任意一个传入的 promise 失败时返回失败。
+         * 例如，如果你传入的 promise中，有四个 promise 在一定的时间之后调用成功函数，有一个立即调用失败函数，那么 Promise.all将立即变为失败。
+        */
+        var p1 = new Promise((resolve, reject) => {
+            setTimeout(resolve, 1000, 'one');
+        });
+        var p2 = new Promise((resolve, reject) => {
+            setTimeout(resolve, 2000, 'two');
+        });
+        var p3 = new Promise((resolve, reject) => {
+            setTimeout(resolve, 3000, 'three');
+        });
+        var p4 = new Promise((resolve, reject) => {
+            setTimeout(resolve, 4000, 'four');
+        });
+        var p5 = new Promise((resolve, reject) => {
+            reject('reject');
+        });
+        Promise.all([p1, p2, p3, p4, p5]).then(values => {
+            console.log(values);
+        }, reason => {
+            console.log(reason); // reject
+        });
+    </script>
+</body>
+
+</html>

@@ -35,3 +35,11 @@ Promise.all([
  * 它的reject回调执行是，只要任何一个输入的promise的reject回调执行或者输入不合法的promise就会立即抛出错误，
  * 并且reject的是第一个抛出的错误信息。
  */
+
+/**
+ * 语法 Promise.all(iterable);
+ * 参数 iterable 一个可迭代对象，如Array或String
+ * 返回值   如果传入的参数是一个空的可迭代对象，则返回一个已完成（already resolved）状态的 Promise。
+ *         如果传入的参数不包含任何 promise，则返回一个异步完成（asynchronously resolved） Promise。
+ *         其它情况下返回一个处理中（pending）的Promise。这个返回的 promise 之后会在所有的 promise 都完成或有一个 promise 失败时异步地变为完成或失败
+ */ 
