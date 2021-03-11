@@ -18,3 +18,15 @@ p.then(null, function (s) {
 Promise.reject('出错了').catch(e => {
     console.log(e === '出错了') // true
 })
+
+/**
+ * Promise.reject()方法返回一个带有拒绝原因的Promise对象。
+ */
+
+/**
+ * 语法   Promise.reject(reason);
+ * 参数   reason 表示Promise被拒绝的原因
+ * 返回值 一个给定原因了的被拒绝的Promise
+ * 静态函数Promise.reject返回一个被拒绝的Promise对象。
+ * 通过使用Error的实例获取错误原因reason对调试和选择性错误捕捉很有帮助。
+ */

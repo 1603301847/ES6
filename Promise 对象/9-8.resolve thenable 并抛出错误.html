@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var p1 = Promise.resolve({
+            then: function (onFulfill, onReject) {
+                onFulfill("fulfilled");
+            }
+        });
+        console.log(p1 instanceof Promise); // true
+
+        p1.then(function (v) {
+            console.log(v); // fulfilled
+        }, function (e) {
+            console.log(e); // 不会打印
+        });
+
+        var thenable = {
+            then: function (resolve) {
+                throw new TypeError("Throwing");
+                resolve("Resolving");
+            }
+        };
+
+        var p2 = Promise.resolve(thenable);
+        p2.then(function (v) {
+            console.log(v); // 不会打印
+        }, function (e) {
+            console.log(e); // TypeError: Throwing at Object.then
+        });
+
+        var thenable = {
+            then: function (resolve) {
+                resolve("Resolving");
+                throw new TypeError("Throwing");
+            }
+        };
+
+        var p3 = Promise.resolve(thenable);
+        p3.then(function (v) {
+            console.log(v); // Resolving
+        }, function (e) {
+            console.log(e); // 不会打印
+        });
+    </script>
+</body>
+
+</html>

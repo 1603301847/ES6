@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var original = Promise.resolve(33);
+        var cast = Promise.resolve(original);
+        cast.then(function (value) {
+            console.log('value' + value);
+        });
+        console.log('original === cast ? ' + (original === cast));
+        /**
+         * 打印结果
+         * 有一个同步或异步先后执行的区别
+         * original === cast ? true
+         * value33
+        */
+    </script>
+</body>
+
+</html>
