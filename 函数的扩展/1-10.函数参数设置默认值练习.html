@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function m1({
+            x = 0,
+            y = 0
+        } = {}) {
+            return [x, y];
+        }
+
+        function m2({
+            x,
+            y
+        } = {
+            x: 0,
+            y: 0
+        }) {
+            return [x, y];
+        }
+
+        // 函数没有参数的情况
+        console.log(m1()); // [0, 0]
+        console.log(m2()); // [0, 0]
+
+        // x 和 y 都有值的情况
+        console.log(m1({x: 3, y: 8})); // [3, 8]
+        console.log(m2({x: 3, y: 8})); // [3, 8]
+
+        // x有值，y无值的情况
+        console.log(m1({x: 3})); // [3, 0]
+        console.log(m2({x: 3})); // [3, undefined]
+
+        // x 和 y 都无值的情况
+        console.log(m1({}));  // [0, 0]
+        console.log(m2({})); // [undefined, undefined]
+
+        console.log(m1({z: 3})); // [0, 0]
+        console.log(m2({z: 3})); // [undefined, undefined]
+    </script>
+</body>
+
+</html>

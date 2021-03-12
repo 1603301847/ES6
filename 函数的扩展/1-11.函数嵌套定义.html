@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script> 
+        /**
+         * 默认参数总是会被首先执行，而在函数体内部的函数声明会在之后生效。
+        */
+        function f(a = go()) {
+            function go() {
+                return ':P';
+            }
+        }
+
+        function withDefaults(a, b = 5, c = b, d = go(), e = this, // Uncaught ReferenceError: go is not defined
+            f = arguments, g = this.value) {
+            return [a, b, c, d, e, f, g];
+        } 
+
+        function withoutDefaults(a, b, c, d, e, f, g) {
+            switch (arguments.length) {
+                case 0:
+                    a;
+                case 1:
+                    b = 5;
+                case 2:
+                    c = b;
+                case 3:
+                    d = go();
+                case 4:
+                    e = this;
+                case 5:
+                    f = arguments;
+                case 6:
+                    g = this.value;
+                default:
+            }
+            return [a, b, c, d, e, f, g];
+        }
+
+        withDefaults.call({
+            value: '=^_^='
+        });
+
+
+        withoutDefaults.call({
+            value: '=^_^='
+        });
+    </script>
+</body>
+
+</html>

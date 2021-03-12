@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 参数的默认值可以与解构赋值的默认值，结合起来使用
+         * 代码只是用了对象的解构赋值的默认值，没有使用函数参数的默认值
+         * 只有当函数foo的参数是一个对象时，变量x和y才会通过解构赋值生成。
+         * 如果函数foo调用时没提供参数，变量x和y就不会生成，从而报错
+        */
+        function foo({x, y = 5}) {
+            console.log(x, y);
+        }
+        foo({}); // undefined 5
+        foo({x: 1}); // 1 5
+        foo({x: 1, y: 2}); // 1 2
+        foo(); // Uncaught TypeError: Cannot destructure property 'x' of 'undefined' as it is undefined.
+    </script>
+</body>
+</html>

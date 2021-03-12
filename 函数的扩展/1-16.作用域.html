@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域。
+         * 等初始化结束，这个作用域就会消失，这种语法行为，在不设置参数默认值时，是不会出现的。
+         * 参数y的默认值等于变量x。调用函数f时，参数形成一个单独的作用域。
+         * 在这个作用域里面，默认值变量x指向第一个参数x，而不是全局变量x，所以输出是2.
+        */
+        var x = 1;
+        function f(x, y = x) {
+            console.log(y); // 2
+        }
+        f(2);
+
+        /**
+         * 函数f1调用时，参数y1 = x1形成一个单独的作用域。
+         * 这个作用域里面，变量x1本身没有定义，所以指向外层的全局变量x1。
+         * 函数调用时，函数体内部的局部变量x影响不到默认值变量x。
+        */
+        let x1 = 1;
+        function f1(y1 = x1) {
+            let x1 = 2;
+            console.log(y1); // 1
+        }
+        f1();
+
+        /**
+         * 如果全局变量x不存在，就会报错。
+        */
+        // function f2(y2 = x2) { // Uncaught ReferenceError: x2 is not defined
+        //     let x2 = 2;
+        //     console.log(y2); 
+        // }
+        // f2();
+
+        /**
+         * 参数 x = x形成一个单独作用域。实际执行的是 let x = x，由于暂时性死区的原因，
+        */
+        // var x3 = 1;
+        // function foo(x3 = x3) { // Uncaught ReferenceError: Cannot access 'x3' before initialization
+        // }
+        // foo();
+
+        /**
+         * 函数bar的参数func的默认值时一个匿名函数，返回值为变量foo1。
+         * 函数参数形成的单独作用域里面，并没有定义foo1，所以foo1指向外层的全局变量foo1，因此输出outer。
+        */
+        let foo1 = 'outer';
+        function bar(func = () => foo1) {
+            let foo1 = 'inner';
+            console.log(func()); // outer
+        }
+        bar();
+
+        /**
+         * 匿名函数里面的foo指向函数外层，但是函数外层并没有声明变量foo，所以就报错了。
+        */
+        function bar1(func1 = () => foo2) { // Uncaught ReferenceError: foo2 is not defined
+            let foo2 = 'inner';
+            console.log(func1());
+        }
+        bar1();
+    </script>
+</body>
+</html>

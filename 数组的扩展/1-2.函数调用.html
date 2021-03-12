@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * array.push(...items) 和 add(...numbers) 这两行，都是函数的调用，它们都使用了扩展运算符。
+         * 该运算符将一个数组，变为参数序列。
+        */
+        function push(array, ...items) {
+            array.push(...items);
+        }
+
+        function add(x, y) {
+            return x + y;
+        }
+
+        const numbers = [4, 38];
+        console.log(add(...numbers)); // 42
+    </script>
+</body>
+</html>

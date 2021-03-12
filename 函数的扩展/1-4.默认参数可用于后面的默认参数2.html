@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function go() {
+            return ':P';
+        }
+
+        function withDefaults(a, b = 5, c = b, d = go(), e = this, f = arguments, g = this.value) {
+            return [a, b, c, d, e, f, g];
+        }
+
+        function withoutDefaults(a, b, c, d, e, f, g) {
+            switch (arguments.length) {
+                case 0:
+                    a;
+                case 1:
+                    b = 5;
+                case 2:
+                    c = b;
+                case 3:
+                    d = go();
+                case 4:
+                    e = this;
+                case 5:
+                    f = arguments;
+                case 6:
+                    g = this.value;
+                default:
+            }
+            return [a, b, c, d, e, f, g];
+        }
+        console.log(withDefaults.call({
+            value: '=^_^='
+        })); // [undefined, 5, 5, ":P", {value: "=^_^="}, Arguments(0), "=^_^="]
+        console.log(withoutDefaults.call({
+            value: '=^_^='
+        })); // [undefined, 5, 5, ":P", {value: "=^_^="}, Arguments(0), "=^_^="]
+    </script>
+</body>
+
+</html>

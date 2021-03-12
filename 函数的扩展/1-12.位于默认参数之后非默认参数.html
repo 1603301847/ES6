@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 参数仍然设置为从左到右，覆盖默认参数，即使后面的参数没有默认值。
+        function f(x = 1, y) {
+            return [x, y];
+        }
+        f();
+        f(2);
+    </script>
+</body>
+</html>

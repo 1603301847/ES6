@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 参数默认值不是传值的，而是每次都重新计算默认表达式的值
+         * 参数p的默认值是x + 1 每次调用函数foo，都会重新计算 x + 1，而不是默认p等于100
+        */
+        let x = 99;
+        function foo(p = x + 1) {
+            console.log(p); // 100 101
+        }
+        foo();
+
+        x = 100;
+        foo();
+    </script>
+</body>
+</html>

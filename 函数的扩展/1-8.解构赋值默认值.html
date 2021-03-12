@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 如果fetch的第二个参数是一个对象，就可以为它的三个属性设置默认值。
+         * 这种写法不能省略第二个参数，如果结合函数参数的默认值，就可以省略第二个参数。
+        */
+        function fetch(url, {
+            body = '',
+            method = 'GET',
+            headers = {}
+        }) {
+            console.log(method);
+        }
+
+        fetch('http://example.com', {}); // GET
+        fetch('http://example.com'); // Uncaught TypeError: Cannot read property 'body' of undefined
+    </script>
+</body>
+
+</html>

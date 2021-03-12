@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 有默认值的参数都不是尾参数。这时，无法只省略该参数，而不省略它后面的参数，除非显式输入undefined。
+        */
+        function f(x = 1, y) {
+            return [x, y];
+        }
+        console.log(f()); // [1, undefined]
+        console.log(f(2)); // [2, undefined]
+        // console.log(f(, 1));
+        console.log(f(undefined, 1));
+
+        function f1(x1, y1 = 5, z) {
+            return [x1, y1, z];
+        }
+        console.log(f1()); // [undefined, 5, undefined]
+        console.log(f1(1)); // [1, 5, undefined]
+        // console.log(f1(1, , 2));
+        console.log(f1(1, undefined, 2)); // [1, 5, 2]
+
+        /**
+         * x参数对应undefined，结果触发了默认值，y参数等于null，就没有触发默认值。
+        */
+        function foo(x2 = 5, y2 = 6) {
+            console.log(x2, y2); // 5 null
+        }
+        foo(undefined, null); 
+    </script>
+</body>
+
+</html>
