@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 箭头函数可以让setTimeout里面的this，绑定定义时所在的作用域，
+         * 而不是指向运行时所在的作用域。
+         * Timer函数内部设置了两个定时器，分别使用了箭头函数和普通函数。
+         * 前者的this绑定定义时所在的作用域（即Timer函数），后者的this指向运行时所在的作用域（即全局对象）。
+         * 3100 毫秒之后，timer.s1被更新了 3 次，而timer.s2一次都没更新。
+         */
+        function Timer() {
+            this.s1 = 0;
+            this.s2 = 0;
+            // 箭头函数
+            setInterval(() => this.s1++, 1000);
+            // 普通函数
+            setInterval(function () {
+                this.s2++;
+            }, 1000);
+        }
+        var timer = new Timer();
+        setTimeout(() => console.log('s1: ', timer.s1), 3100); // s1: 3
+        setTimeout(() => console.log('s2: ', timer.s2), 3100); // s2: 0
+    </script>
+</body>
+
+</html>

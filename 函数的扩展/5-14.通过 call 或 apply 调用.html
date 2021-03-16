@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 由于 箭头函数没有自己的this指针，通过 call() 或 apply() 方法调用一个函数时，只能传递参数（不能绑定this），他们的第一个参数会被忽略。
+         * （这种现象对于bind方法同样成立）
+         */
+        var adder = {
+            base: 1,
+            add: function (a) {
+                var f = v => v + this.base;
+                return f(a);
+            },
+
+            addThruCall: function (a) {
+                var f = v => v + this.base;
+                var b = {
+                    base: 2
+                };
+                return f.call(b, a);
+            }
+        };
+        console.log(adder.add(1)); // 2
+        console.log(adder.addThruCall(1)); // 2
+    </script>
+</body>
+
+</html>

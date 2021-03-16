@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 除了this， arguments、super、new.target三个指向外层函数的变量在箭头函数之中是不存在的
+         * 箭头函数内部的变量arguments，其实是函数foo的arguments变量。
+        */
+        function foo() {
+            setTimeout(() => {
+                console.log('args: ', arguments);
+            }, 100);
+        }
+        foo(2, 4, 6, 8);
+    </script>
+</body>
+</html>

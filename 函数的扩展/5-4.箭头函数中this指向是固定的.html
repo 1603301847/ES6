@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * setTimeout()的参数是一个箭头函数，这个箭头函数定义生效是在foo函数生成时，而它真正执行要等到100毫秒后。
+         * 如果是普通函数，执行时this应该指向全局对象window，输出21
+         * 箭头函数导致this总是指向函数定义生效时所在的对象，所以打印出来的是42
+         */
+        function foo() {
+            setTimeout(() => {
+                console.log('id:', this.id); // id: 42
+            }, 100);
+        }
+
+        /**
+         * function foo() {
+            setTimeout(function () {
+                console.log('id:', this.id); // id: 21
+            }, 100);
+          }
+        */
+        var id = 21;
+        foo.call({
+            id: 42
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        var obj = {
+            a: 10
+        };
+        Object.defineProperty(obj, "b", {
+            get: () => {
+                console.log(this.a, typeof this.a, this); // undefined "undefined" Window {window: Window, self: Window, document: document, name: "", location: Location, …}
+                return this.a + 10;
+            }
+        });
+        obj.b;
+    </script>
+</body>
+</html>

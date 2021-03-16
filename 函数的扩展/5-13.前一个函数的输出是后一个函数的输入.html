@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 在调用pipeline(plus1, mult2)的时候，通过rest参数，将plus1，mult2接受到数组funcs中
+         * val => funcs.reduce((a, b) => b(a), val); 相当于外层箭头函数调用的函数(箭头函数)，这个函数的参数为val
+         * reduce() 是一个数组的方法，执行时它会将数组中的每一个元素按照传入的函数规则处理一遍
+         * val(即5)作为第一次调用的初始值，即plus(5)得出结果作为funcs.reduce((a, b)=> b(a),val);中箭头函数的a
+         * 然后执行mult2(a)即mult2(6),最终得到12.
+        */
+        const pipeline = (...funcs) => val => funcs.reduce((a, b) => b(a), val);
+        const plus1 = a => a + 1;
+        const mult2 = a => a * 2;
+        const addTheMult = pipeline(plus1, mult2);
+        console.log(addTheMult(5)); // 12
+
+        // 可读性好的写法
+        const plus2 = a1 => a1 + 1;
+        const mult3 = a1 => a1 * 2;
+        console.log(mult3(plus2(5))); // 12
+    </script>
+</body>
+</html>

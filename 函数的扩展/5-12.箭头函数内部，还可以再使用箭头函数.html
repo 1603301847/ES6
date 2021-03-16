@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 箭头函数内部，还可以再使用箭头函数
+         * (1)insert函数返回了一个具有into方法的对象 即 let insert = (参数) => ({into: 2});
+         * (2)into这个方法返回了一个具有after方法的对象 into:(参数)=>({after:(3)})
+         * (3)after:(参数) => {函数体}
+         */
+        function insert(value) {
+            console.log()
+            return {
+                into: function (array) {
+                    return {
+                        after: function (afterValue) {
+                            array.splice(array.indexOf(afterValue) + 1, 0, value);
+                            return array;
+                        }
+                    };
+                }
+            };
+        }
+
+        console.log(insert(2).into([1, 3]).after(1)); // [1, 2, 3]
+
+        // 箭头函数写法
+        let insert1 = (value1) => ({
+            into1: (array1) => ({
+                after1: (afterValue1) => {
+                    array1.splice(array1.indexOf(afterValue1) + 1, 0, value1);
+                    return array1;
+                }
+            })
+        });
+        console.log(insert1(2).into1([1, 3]).after1(1)); // [1, 2, 3]
+    </script>
+</body>
+
+</html>

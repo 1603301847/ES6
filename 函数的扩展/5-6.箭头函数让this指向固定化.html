@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 箭头函数可以让this指向固定化，这种特性很有利于封装回调函数。
+         * DOM 事件的回调函数封装在一个对象里面。
+         * 代码的init方法中，使用了箭头函数，这导致这个箭头函数里面的this，总是指向handler对象。
+         * 否则，回调函数运行时，this.doSomething这一行会报错，因为此时this指向document对象。
+        */
+        var handler = {
+            id: '123456',
+            init: function() {
+                document.addEventListener('click', event => this.doSomething(event.type), false);
+            },
+
+            doSomething: function(type) {
+                console.log('Handling ' + type + ' for ' + this.id);
+            }
+        };
+    </script>
+</body>
+</html>

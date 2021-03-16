@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .on {
+            border: none;
+            background-color: bisque;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="press">按钮</button>
+    <script>
+        /**
+         * 点击按钮会报错，因为button的监听函数是一个箭头函数，导致里面的this就是全局对象。
+        */
+        var button = document.getElementById('press');
+        button.addEventListener('click', () => {
+            this.classList.toggle('on');
+        });
+
+        // 如果改成普通函数，this就会动态指向被点击的按钮对象。
+        // button.addEventListener('click', function(){
+        //     this.classList.toggle('on');
+        // });
+    </script>
+</body>
+
+</html>

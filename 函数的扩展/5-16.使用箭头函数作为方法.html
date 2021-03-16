@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 箭头函数表达式对非方法函数是最合适的
+         */
+        'use strict';
+        var obj = {
+            i: 10,
+            b: () => console.log(this.i, this), // undefined Window {window: Window, self: Window, document: document, name: "", location: Location, …}
+            c: function () {
+                console.log(this.i, this) // 10 {i: 10, b: f, c: f}
+            }
+        }
+        obj.b();
+        obj.c();
+    </script>
+</body>
+
+</html>

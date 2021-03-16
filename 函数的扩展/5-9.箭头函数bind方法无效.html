@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 箭头函数没有自己的this，所以不能用call()、apply()、bind()这些方法去改变this指向
+         * 箭头函数没有自己的this，所以bind方法无效，内部的this指向外部的this。
+        */
+        console.log((function() {
+            return [
+                (() => this.x).bind({ x: 'inner' })()
+            ];
+        }).call({ x: 'outer' })); // ["outer"]
+    </script>
+</body>
+</html>

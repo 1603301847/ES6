@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /***
+         * 箭头函数不绑定Arguments 对象。
+         * arguments只是引用了封闭作用域内的arguments
+         */
+        var arguments = [1, 2, 3];
+        var arr = () => arguments[0];
+
+        console.log(arr()); // 1
+
+        function foo(n) {
+            var f = () => arguments[0] + n; // 隐式绑定 foo 函数的 arguments 对象. arguments[0] 是 n,即传给foo函数的第一个参数
+            return f();
+            return f();
+        }
+
+        console.log(foo(1)); // 2
+        console.log(foo(2)); // 4
+        console.log(foo(3)); // 6
+        console.log(foo(3, 2)); // 6
+
+        // 使用rest参数是相较使用arguments对象的
+        function foo1(arg1) {
+            var f1 = (...args1) => args1[0];
+            return f1(arg1);
+        }
+        console.log(foo1(1)); // 1
+
+        function foo2(arg2, arg3) {
+            var f1 = (...args2) => args2[1];
+            return f1(arg2, arg3);
+        }
+        console.log(foo2(1, 2)); // 2
+    </script>
+</body>
+
+</html>

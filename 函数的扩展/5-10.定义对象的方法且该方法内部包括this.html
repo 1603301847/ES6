@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * obj.m()使用箭头函数定义。JavaScript引擎的处理方法是，
+         * 先在全局空间生成这个箭头函数，然后赋值给obj.m，这导致箭头函数内部的this指向全局对象，
+         * 所以obj.m()输出的是全局空间的21，而不是对象内部的42。
+         * 对象的属性建议使用传统的写法定义，不要用箭头函数定义。
+        */
+        globalThis.s = 21;
+        const obj = {
+            s: 42,
+            m: () => console.log(this.s) // 21
+        };
+        obj.m();
+    </script>
+</body>
+</html>

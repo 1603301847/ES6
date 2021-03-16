@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 代码之中，只有一个this，就是函数foo的this，所以t1、t2、t3都输出同样的结果。
+         * 因为所有的内层函数都是箭头函数，都没有自己的this，它们的this其实都是最外层foo函数的this。
+        */
+        function foo() {
+            return () => {
+                return () => {
+                    return () => {
+                        console.log('id:', this.id); 
+                    };
+                };
+            };
+        }
+
+        var f = foo.call({id: 1});
+
+        var t1 = f.call({id: 2})()(); // id: 1
+        var t2 = f().call({id: 3})(); // id: 1
+        var t3 = f()().call({id: 4}); // id: 1
+    </script>
+</body>
+</html>
