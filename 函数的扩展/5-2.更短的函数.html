@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var elements = [
+            'Hydrogen',
+            'Helium',
+            'Lithium',
+            'Beryllium'
+        ];
+
+        console.log(elements.map(function (element) {
+            return element.length;
+        })); // [8, 6, 7, 9]
+
+        // 上面的普通函数可改写如下的箭头函数
+        console.log(elements.map((element) => {
+            return element.length;
+        })); // [8, 6, 7, 9]
+
+        // 当箭头函数只有一个参数的时候可省略圆括号
+        console.log(elements.map(element => {
+            return element.length;
+        })); // [8, 6, 7, 9]
+
+        // 当箭头函数的函数体只有一个'return'语句时，可以省略'return'关键字和方法体的花括号
+        console.log(elements.map(element => element.length)); // [8, 6, 7, 9]
+
+        // 只需要 `length` 属性，所以可以使用参数解构
+        // 需要注意的是字符串 `"length"` 是我们想要获得的属性的名称，而 `lengthFooBArX` 则只是个变量名，
+        // 可以替换成任意合法的变量名
+        console.log(elements.map(({
+            "length": lengthFooBArX
+        }) => lengthFooBArX)); // [8, 6, 7, 9]
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * rest参数上使用任意的数组方法
+         */
+        function sortRestArgs(...theArgs) {
+            var sortedArgs = theArgs.sort();
+            return sortedArgs;
+        }
+        alert(sortRestArgs(5, 3, 7, 1)); // 1, 3, 5, 7
+
+        /**
+         * 而arguments对象不可以
+        */
+        function sortArguments() {
+            var sortedArgs = arguments.sort(); // Uncaught TypeError: arguments.sort is not a function at sortArguments
+            return sortedArgs;
+        }
+        alert(sortArguments(5, 3, 7, 1));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * rest从参数包含了从第二个到最后的所有实参，然后用第一个实参依次乘以它们
+        */
+        function multiply(multiplier, ...theArgs) {
+            return theArgs.map(function (element) {
+                return multiplier * element;
+            });
+        }
+
+        var arr = multiply(2, 1, 2, 3);
+        console.log(arr); // [2, 4, 6]
+    </script>
+</body>
+</html>

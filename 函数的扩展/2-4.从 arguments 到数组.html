@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 引入了rest参数来减少由参数引起的样板代码
+         */
+        // 将 "参数" 转换为普通数组
+        function f(a, b) {
+            var normalArray = Array.prototype.slice.call(arguments);
+            //    var normalArray = [].slice.call(arguments);
+            //    var normalArray = Array.from(arguments);
+
+            var first = normalArray.shift();
+            //    var first = arguments.shift();
+        }
+
+        // 使用rest参数访问普通数组
+        function f(...args) {
+            var normalArray = args;
+            var first = normalArray.shift();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 箭头函数不会创建自己的this,它只会从自己的作用域链的上一层继承this。
+         * 传递给setInterval的函数内的this与封闭函数中的this值相同
+         */
+        function Person() {
+            // Person() 构造函数定义 'this'作为它自己的实例
+            this.age = 0;
+            // 在非严格模式，growUp()函数定义 ' this'作为全局对象，
+            // 在与Person()构造函数中定义的 'this'并不相同
+            setTimeout(function growUp() {
+                this.age++; // |this| 正确地指向 p 实例
+                console.log(this.age);
+            }, 1000);
+        }
+        var p = new Person();
+
+        // 通过将this值分配给封闭的变量，可以解决this问题
+        // 可以创建绑定函数，以便将预先分配的this值传递绑定的目标函数
+        function Person() {
+            var that = this;
+            that.age = 0;
+
+            setInterval(function growUp() {
+                // 回调引用的是 'that' 变量，其值是预期的对象
+                that.age++;
+                console.log(that.age);
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

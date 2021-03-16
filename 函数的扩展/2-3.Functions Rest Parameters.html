@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * rest语法 将一个不定数量的参数表示为一个数组
+         * 
+        */
+        function sum(...theArgs) {
+            return theArgs.reduce((previous, current) => {
+                return previous + current;
+            });
+        }
+        console.log(sum(1, 2, 3));  // 6
+        console.log(sum(1, 2, 3, 4)); // 10
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * add函数是一个求和函数，利用rest参数，可以向该函数传入任意数目的参数。
+        */
+        function add(...values) {
+            let sum = 0;
+
+            for (var val of values) {
+                sum += val;
+            }
+            return sum;
+        }
+        console.log(add(2, 5, 3)); // 10
+    </script>
+</body>
+
+</html>
