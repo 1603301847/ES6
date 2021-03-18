@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 方法一是在尾递归函数之外，再提供一个正常形式的函数。
+         * 阶乘函数 factorial 需要用到一个中间变量total，那就把这个中间变量改写成函数的参数。
+         * 通过一个正常形式的阶乘函数factorial，调用尾递归函数tailFactorial，看起来就正常多了。
+         */
+        function tailFactorial(n, total) {
+            if (n === 1) return total;
+            return tailFactorial(n - 1, n * total);
+        }
+        function factorial(n) {
+            return tailFactorial(n, 1);
+        }
+        console.log(factorial(5)); // 120
+    </script>
+</body>
+
+</html>

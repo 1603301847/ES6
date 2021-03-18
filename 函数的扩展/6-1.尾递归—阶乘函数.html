@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 计算n的阶乘，最多需要保存n个调用记录
+         */
+        function factorical(n) {
+            if (n === 1) return 1;
+            return n * factorical(n - 1);
+        }
+        console.log(factorical(5)); // 120
+
+        /**
+         * 尾递归写法，只保留一个调用记录
+         */
+        function factorical1(n, total) {
+            if (n === 1) return total;
+            return factorical1(n - 1, n * total);
+        }
+        console.log(factorical1(5, 1)); // 120
+    </script>
+</body>
+
+</html>

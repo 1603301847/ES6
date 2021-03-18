@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 采用 ES6 的函数默认值
+        */
+        function factorial(n, total = 1) {
+            if (n === 1) return total;
+            return factorial(n - 1, n * total);
+        }
+        console.log(factorial(5)); // 120
+    </script>
+</body>
+
+</html>
