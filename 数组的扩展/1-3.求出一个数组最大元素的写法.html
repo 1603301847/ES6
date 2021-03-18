@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 由于 JavaScript 不提供求数组最大元素的函数，所以只能套用Math.max函数，将数组转为一个参数序列，然后求最大值。
+         * 有了扩展运算符以后，就可以直接用Math.max了。
+         */
+
+        // ES5 的写法
+        console.log(Math.max.apply(null, [14, 3, 77])); // 77
+
+        // ES6 的写法
+        console.log(Math.max(...[14, 3, 77])); // 77
+
+        // 等同于
+        console.log(Math.max(14, 3, 77)); // 77
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 定义了 Number对象的遍历器接口，扩展运算符将5自动转成 Number实例以后，就会调用这个接口，就会返回自定义的结果。
+        */
+        Number.prototype[Symbol.iterator] = function* () {
+            let i = 0;
+            let num = this.valueOf();
+            while(i < num) {
+                yield i++;
+            }
+        }
+        console.log([...5]); // [0, 1, 2, 3, 4]
+    </script>
+</body>
+</html>

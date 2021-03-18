@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span class="name">111</span>
+    <span class="name">222</span>
+    <span class="name">333</span>
+
+    <script>
+        let spans = document.querySelectorAll('span.name');
+
+        // map()
+        let names1 = Array.prototype.map.call(spans, s => s.textContent);
+
+        // Array.from()
+        let names2 = Array.from(spans, s => s.textContent);
+
+        console.log(names1); // ["111", "222", "333"]
+        console.log(names2); // ["111", "222", "333"]
+    </script>
+</body>
+
+</html>

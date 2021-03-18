@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ES5 通过方法来复制数组
+        // a1 会返回原数组的克隆，再修改a2就不会对a1产生影响。
+        const a1 = [1, 2];
+        const a2 = a1.concat();
+
+        a2[0] = 2;
+        console.log(a1); // [1, 2]
+
+        // ES6 扩展运算符提供了复制数组的简便写法
+
+        // 写法一  a2是a1的克隆
+        const a3 = [1, 2];
+        const a4 = [...a3];
+        console.log(a4); // [1, 2]
+
+        // 写法二  a2是a1的克隆
+        const a5 = [1, 2];
+        const [...a6] = a5;
+        console.log(a6); // [1, 2]
+    </script>
+</body>
+</html>
