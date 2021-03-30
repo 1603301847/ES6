@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * delete方法从WeakSet 对象中 移除指定的元素
+         * 语法     ws.delete(value)
+         * 参数     value 必须 从WeakSet对象中移除的对象
+         * 返回值   如果在 WeakSet 对象中成功移除元素则返回 true。
+         *          如果 key 没有在 WeakSet 中找到或者 key 不是一个对象，则返回 false。
+         */
+        var ws = new WeakSet();
+        var obj = {};
+
+        console.log(ws.add(window)); // WeakSet {Window}
+
+        console.log(ws.delete(obj)); // false
+        console.log(ws.delete(window)); // true
+
+        console.log(ws.has(window)); // false
+    </script>
+</body>
+
+</html>

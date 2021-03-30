@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * add()  方法在 WeakSet 对象的最后一个元素后添加新的对象。
+         * 语法    ws.add(value);
+         * 参数    value 必须 将对象添加进WeakSet集合中
+         * 返回值  WeakSet对象
+         */
+        var ws = new WeakSet();
+        console.log(ws.add(window)); // WeakSet {Window}
+        console.log(ws.has(window)); // true
+        console.log(ws.add(1)); // Uncaught TypeError: Invalid value used in weak set at WeakSet.add (<anonymous>)
+    </script>
+</body>
+
+</html>

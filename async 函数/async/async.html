@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+
+<body>
+    <script>
+        /**
+         * async函数
+         * 返回Promise，无论函数内是否有await
+         * 函数内return返回的值，会成为then回调函数的参数
+         * 
+         * await关键字
+         * 只能出现在async函数内，普通函数内不可以使用
+         * 正常情况下 await后面跟Promise对象，返回对象结果
+         * 如果后面跟的不是Promise对象，直接返回对应的值
+         * 
+         * 语法
+         * async function fn1(){
+         * }
+         * 
+         * let fn2 = async function(){
+         * }
+         * 
+         * let fn3 = async () => {
+         * }
+         */
+        {
+            let p1 = () => new Promise((resolve, reject) => resolve('hello'));
+
+            function fn() {
+                p1().then(
+                    res => {
+                        console.log('demo1-1', res);
+                    }
+                )
+                console.log('demo1-2');
+            }
+            fn();
+        } // demo1-2     demo1-1 hello
+
+        {
+            let p1 = () => Promise.resolve('hello');
+
+            async function fn() {
+                let res = await p1();
+                // await获取的是resolve()的结果
+                // resolve的数据也会传递给then()
+                // 如果是reject()的数据会传递给then()的第二个函数，或者被catch获取到
+                console.log('demo2-1', res);
+                console.log('demo2-2');
+            }
+            fn();
+        } // demo2-1 hello   demo2-2
+
+        {
+            let p1 = () => Promise.resolve('hello');
+            async function fn() {
+                return await p1();
+            }
+            // async函数返回的是一个Promise
+            fn().then(
+                res => {
+                    console.log('demo3', res);
+                }
+            )
+        } // demo3 hello
+
+        {
+            let p1 = () => Promise.reject('hello');
+            async function fn() {
+                return await p1();
+            }
+            // async函数返回的是一个Promise
+            fn().then(
+                res => {
+                    console.log('demo3', res);
+                },
+                // err => {
+                //     console.log('demo4-err', err);
+                // }
+            ).catch(
+                err => {
+                    console.log('demo4-catch', err);
+                }
+            )
+        } // demo4-catch hello
+
+        {
+            // 即使前面的异步操作出现异常了，但是不希望影响后续操作
+            // try{} catch() {}
+            let p1 = () => Promise.reject('hello');
+            async function fn() {
+                try {
+                    await p1();
+
+                } catch (e) {
+                    console.log('demo5-catch', e);
+                }
+                return await 100;
+            }
+            fn().then(
+                res => {
+                    console.log('demo5', res);
+                }
+            )
+        } // demo5-catch hello   demo5 100
+
+        {
+            // 如果aaa.txt的值为manager 则请求bbb.txt 如果不是请求ccc.txt
+            async function getData() {
+                let userType = await Promise.resolve($.ajax({
+                    url: 'aaa.txt'
+                }));
+                console.log(userType);
+                if (userType == "manager") {
+                    let userList = await Promise.resolve($.ajax({
+                        url: 'bbb.txt'
+                    }));
+                    console.log(userList);
+                } else {
+                    let userList = await Promise.resolve($.ajax({
+                        url: 'ccc.txt'
+                    }));
+                    console.log(userList);
+                }
+            }
+            getData();
+        }
+    </script>
+</body>
+
+</html>

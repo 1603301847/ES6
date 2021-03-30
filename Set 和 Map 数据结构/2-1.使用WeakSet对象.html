@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * foo !== bar。 尽管它们是相似的对象，但是它们不是同一个对象。
+         * 因此，它们都可以被加入到set中。
+        */
+        var ws = new WeakSet();
+        var foo = {};
+        var bar = {};
+
+        console.log(ws.add(foo));
+        console.log(ws.add(bar));
+
+        console.log(ws.has(foo)); // true
+        console.log(ws.has(bar)); // true
+
+        console.log(ws.delete(foo)); // true
+        console.log(ws.has(foo)); // false
+        console.log(ws.has(bar)); // true
+    </script>
+</body>
+
+</html>

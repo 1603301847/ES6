@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        {
+            let getP1 = () => {
+                return Promise.resolve('p1');
+            }
+            let getP2 = () => {
+                return Promise.resolve('p2');
+            }
+            let fn = async () => {
+                let p1value = await getP1();
+                let p2value = await getP2();
+                console.log(p1value, p2value);
+            }
+            fn();
+        }
+
+        // 并行
+        {
+            // 串行写法 先执行完p1 才会去执行p2
+            // 其中getP1()getP2()模拟两个不相干的异步请求
+            let getP1 = () => {
+                return Promise.resolve('p1');
+            }
+            let getP2 = () => {
+                return Promise.resolve('p2');
+            }
+            let fn = async () => {
+                let docP1 = getP1();
+                let docP2 = getP2();
+                let p1value = await docP1;
+                let p2value = await docP2;
+                console.log(p1value, p2value);
+            }
+            fn();
+        }
+
+        // 并行
+        {
+            let getP1 = () => {
+                return Promise.resolve('p1');
+            }
+            let getP2 = () => {
+                return Promise.resolve('p2');
+            }
+            let fn = async () => {
+                let values = await Promise.all([getP1(), getP2()])
+                console.log(values);
+            }
+            fn();
+        }
+    </script>
+</body>
+
+</html>
